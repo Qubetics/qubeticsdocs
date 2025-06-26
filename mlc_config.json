@@ -1,0 +1,76 @@
+{
+    "ignorePatterns": [
+        {
+            "pattern": "^/"
+        },
+        {
+            "pattern": "^#"
+        },
+        {
+            "pattern": "^./"
+        },
+        {
+            "pattern": "^http://localhost:8877"
+        },
+        {
+            "pattern": "^http://localhost:9090"
+        },
+        {
+            "pattern": "^http://docs.qubetics.org"
+        },
+        {
+            "pattern": "^http://community.qubetics.org"
+        },
+        {
+            "pattern": "^http://academy.qubetics.org"
+        },
+        {
+            "pattern": "^http://docs.tendermint.org"
+        },
+        {
+            "pattern": "^http://docs.cosmos.network"
+        },
+        {
+            "pattern": "^https://faucet.qubetics.dev"
+        },
+        {
+            "pattern": "^https://en.wikipedia.org"
+        },
+        {
+            "pattern": "^https://immunefi.com/bounty/qubetics"
+        },
+        {
+            "pattern": "^https://github.com/qubetics"
+        },
+        {
+            "pattern": "^https://github.com/tendermint"
+        },
+        {
+            "pattern": "^https://eips.ethereum.org"
+        },
+        {
+            "pattern": "^https://medium.com"
+        },
+        {
+            "pattern": "^https://docs.docker.com"
+        },
+        {
+            "pattern": "^https://api.qubetics.dev"
+        },
+        {
+            "pattern": "^https://api.qubetics.org"
+        },
+        {
+            "pattern": "^https://www.keplr.app"
+        },
+        {
+            "pattern": "^https://metamask.io"
+        },
+        {
+            "pattern": "^https://evm.qubetics.dev"
+        }
+  ],
+    "retryOn429": true,
+    "retryCount": 3,
+    "fallbackRetryDelay": "20s"
+}

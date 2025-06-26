@@ -1,0 +1,264 @@
+---
+sidebar_position: 4
+---
+
+# Testnet
+
+import ProjectValue from '@site/src/components/ProjectValue';
+import Highlighter from '@site/src/components/Highlighter';
+
+This document outlines the steps to join an existing testnet.
+
+## Pick a Testnet
+
+You specify the network you want to join by setting the **genesis file** and **seeds**. If you need more information about past networks, check our [testnets repo](https://github.com/Qubetics/qubetics-testnet-script).
+
+| Testnet Chain ID | Description                       | Site                                                                       |  Status  |
+| ---------------- | --------------------------------- | -------------------------------------------------------------------------- |  ------- |
+| `qubetics_9029-1`   | qubetics_9029-1 Testnet              | [qubetics 9029-1](https://github.com/Qubetics/qubetics-testnet-script)    |  `Live`  |
+
+## Server Timezone Configuration
+
+Make sure your server **timezone configuration is UTC**.
+To know what is your current timezone, run the `timedatectl` command.
+
+:::danger
+🚨 **DANGER**: Having a different timezone configuration
+may cause a `LastResultsHash` mismatch error.
+This will take down your node!
+:::
+
+## Install `qubeticsd`
+
+Follow the [installation](./../protocol/qubetics-cli/) document to install the <ProjectValue keyword='name' /> binary <Highlighter keyword="binary" />.
+
+:::warning
+Make sure you have the right version of <Highlighter keyword="binary" /> installed.
+:::
+
+### Save Chain ID
+
+We recommend saving the testnet `chain-id` into your <Highlighter keyword="binary" />'s
+`client.toml`. This will make it so you do not have to manually pass in the `chain-id` flag for every CLI command.
+
+:::tip
+See the Official [Chain IDs](./../protocol/concepts/chain-id#official-chain-ids) for reference.
+:::
+
+```bash
+qubeticsd config chain-id qubetics_9029-1
+```
+
+
+## Installation
+
+You can download the latest binaries from the repo and install them.
+
+### Download the binaries
+
+- Go to the [releases section of the repository](https://github.com/Qubetics/qubetics-testnet-script)
+- Clone the repository
+- Extract the files.
+
+After installation is done, check that the `qubeticsd` binaries have been successfully installed:
+
+```bash
+qubeticsd version
+```
+
+:::info
+If the `qubeticsd: command not found` error message is returned, confirm that you have configured [Go](#go) correctly.
+:::
+
+## Run a Node Locally use these Qubetics binary
+-  [Ubuntu22.04](https://github.com/Qubetics/qubetics-testnet-script/tree/main/ubuntu20.04build)
+-  [Ubuntu24.04](https://github.com/Qubetics/qubetics-testnet-script/tree/main/ubuntu22.04build)
+
+:::info
+` Ubuntu`
+
+Copy the `qubeticsd` binary and Paste it inside `/usr/local/bin` folder.
+
+
+` Mac`
+
+Copy the `qubeticsd` binary and Paste it inside `$HOME/go/bin`
+:::
+
+## Automated Sync a Testnet Qubeticsd node
+
+To become familiar with qubetics, you can sync a qubetics testnet blockchain node that produces blocks and exposes EVM and Cosmos
+endpoints. This allows you to deploy and interact with smart contracts locally or test core protocol functionality.
+
+Sync a qubetics testnet blockchain node by executing the script in the base directory of the repository:
+
+```bash
+ ./qubetics_ubuntu_node.sh (it's for ubuntu os) 
+```
+:::info
+Right Now qubetics binary is only for ubuntu22.04, ubuntu 24.04 
+:::
+
+The script stores the node configuration including the local default endpoints under `~/.tmp-qubeticsd/config/config.toml`.
+If you have previously run the script, the script allows you to overwrite the existing configuration and start a new
+local node.
+
+Once your node is running you will see it syncing with testnet of qubetics and producing blocks in your local Qubetics blockchain:
+
+```bash
+12:59PM INF executed block height=1 module=state num_invalid_txs=0 num_valid_txs=0 server=node
+# ...
+1:00PM INF indexed block exents height=7 module=txindex server=node
+```
+
+
+
+
+
+## Mannually Initialize Testnet Node
+
+We need to initialize the node to create all the necessary validator and node configuration files:
+
+```bash
+qubeticsd init <your_custom_moniker> --chain-id qubetics_9029-1
+```
+
+:::danger
+Monikers can contain only ASCII characters. Using Unicode characters will render your node unreachable.
+:::
+
+By default, the `init` command creates your `~/.qubeticsd` (i.e `$HOME`) directory with subfolders `config/` and `data/`.
+In the `config` directory, the most important files for configuration are `app.toml` and `config.toml`.
+
+## Genesis & Seeds
+
+### Copy the Genesis File
+
+Check the `genesis.json` file from the [`archive`](https://github.com/Qubetics/qubetics-testnet-script/blob/main/genesis.json)
+ and copy it over to the `config` directory: `~/.tmp-qubeticsd/config/genesis.json`. This is
+ a genesis file with the chain-id and genesis accounts balances.
+
+```bash
+sudo apt install -y unzip wget
+```
+
+Then verify the correctness of the genesis configuration file:
+
+```bash
+qubeticsd validate-genesis
+```
+
+### Add Persistent Peers
+
+We can set the [`persistent_peers`](https://docs.tendermint.com/v0.34/tendermint-core/using-tendermint.html#persistent-peer) field in `~/.tmp-qubeticsd/config/config.toml` to specify peers that your node will maintain persistent
+ connections with. You can retrieve them from the list of
+available peers on the [`testnet`](https://github.com/Qubetics/qubetics-testnet-script/blob/main/qubetics_ubuntu_node.sh) repo.
+
+A list of available persistent peers is also available in the `#find-peers`. You can get a random 10 entries from the `peers.txt`
+ file in the `PEERS` variable by running the following command:
+
+```bash
+PEERS=`b3262f53ab7bb3341807b853566a88415363bc42@114.119.184.52:26656,c4bd2d6b9b05cd2dc7e582d051168ffbdbcd4483@124.243.136.185:26656`
+```
+
+Use `sed` to include them into the configuration. You can also add them manually:
+
+```bash
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" ~/.tmp-qubeticsd/config/config.toml
+```
+
+## Run a Testnet Validator
+
+
+We have created a validator and delegator app so you can easily setup a validator and delegator node. Here is the link of our validator and delegator web app.
+
+:::tip
+[Valdiator web app](https://validator-testnet.qubetics.work/login)
+
+[Delegator web app](https://delegator-testnet.qubetics.work/login)
+:::
+
+Claim your testnet <ProjectValue keyword="testnet_denom" />  on the [faucet](https://delegator-testnet.qubetics.work/faucet)
+using your validator account address and submit your validator account address:
+
+:::tip
+For more details on how to run your validator, follow [these](./setup-and-configuration/run-a-validator) instructions.
+:::
+
+```bash
+qubeticsd tx staking create-validator \
+  --amount=1000000000000000000tics \
+  --pubkey=$(qubeticsd tendermint show-validator) \
+  --moniker="QubeticsWhale" \
+  --chain-id=<chain_id> \
+  --commission-rate="0.10" \
+  --commission-max-rate="0.20" \
+  --commission-max-change-rate="0.01" \
+  --min-self-delegation="1000000" \
+  --gas="auto" \
+  --gas-prices="0.025tics" \
+  --gas-adjustment="1.15" \
+  --from=<key_name> \
+  --home=$HOME/.tmp-qubeticsd
+```
+
+## Start testnet
+
+The final step is to [start the nodes](./../protocol/qubetics-cli/).
+Once enough voting power (+2/3) from the genesis validators is up-and-running, the
+testnet will start producing blocks.
+
+```bash
+qubeticsd start
+```
+
+## Upgrading Your Node
+
+:::tip
+These instructions are for full nodes that have ran on previous versions of and would like to upgrade to the latest
+ testnet version.
+:::
+
+### Reset Data
+
+:::warning
+If the version `<new_version>` you are upgrading to is not breaking from the previous one, you **should not** reset
+the data. If this is the case you can skip to [Restart](#restart)
+:::
+
+First, remove the outdated files and reset the data.
+
+```bash
+rm $HOME/.tmp-qubeticsd/config/addrbook.json $HOME/.tmp-qubeticsd/config/genesis.json
+qubeticsd tendermint unsafe-reset-all --home $HOME/.tmp-qubeticsd
+```
+
+Your node is now in a pristine state while keeping the original `priv_validator.json` and `config.toml`. If you had
+ any sentry nodes or full nodes setup before,
+your node will still try to connect to them, but may fail if they haven't also
+been upgraded.
+
+:::danger Warning
+Make sure that every node has a unique `priv_validator.json`. Do not copy the `priv_validator.json`
+from an old node to multiple new nodes. Running two nodes with the same `priv_validator.json`
+will cause you to double sign.
+:::
+
+### Restart
+
+To restart your node, just type:
+
+```bash
+qubeticsd start
+```
+
+## Share your Peer
+
+:::tip
+To get your Node ID use
+
+```bash
+qubeticsd tendermint show-node-id
+```
+
+:::

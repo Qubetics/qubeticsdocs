@@ -1,0 +1,15 @@
+version: '2.0'
+services:
+   react-app:
+      build: 
+         context: .
+      ports:
+         - '3006:3006'
+      restart: always
+      volumes:
+         - ./src:/app/src
+         - ./docs:/app/docs
+         - ./static:/app/static
+      container_name: qubeticsdocs
+      environment:
+         - SERVER_PORT=3006

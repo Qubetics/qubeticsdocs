@@ -1,0 +1,241 @@
+---
+sidebar_position: 5
+---
+
+# Mainnet
+
+
+import ProjectValue from '@site/src/components/ProjectValue';
+import Highlighter from '@site/src/components/Highlighter';
+
+This document outlines the steps to join an existing mainnet.
+
+## Mainnet
+
+You specify the network you want to join by setting the **genesis file** and **seeds**. If you need more information about past networks, check our [mainnet node sync repo](https://github.com/Qubetics/qubetics-mainnetnode-script).
+
+| Mainnet Chain ID | Description                       | Site                                                                       |  Status  |
+| ---------------- | --------------------------------- | -------------------------------------------------------------------------- |  ------- |
+| `qubetics_9030-1`   | qubetics_9030-1 mainnet              | [Qubetics 9030-1](https://github.com/Qubetics/qubetics-mainnetnode-script)    |  `Live`  |
+
+## Server Timezone Configuration
+
+Make sure your server **timezone configuration is UTC**.
+To know what is your current timezone, run the `timedatectl` command.
+
+:::danger
+🚨 **DANGER**: Having a different timezone configuration
+may cause a `LastResultsHash` mismatch error.
+This will take down your node!
+:::
+
+## Install `qubeticsd`
+
+Follow the [installation](./../protocol/qubetics-cli/) document to install the <ProjectValue keyword='name' /> binary <Highlighter keyword="binary" />.
+
+:::warning
+Make sure you have the right version of <Highlighter keyword="binary" /> installed.
+:::
+
+### Save Chain ID
+
+We recommend saving the mainnet `chain-id` into your <Highlighter keyword="binary" />'s
+`client.toml`. This will make it so you do not have to manually pass in the `chain-id` flag for every CLI command.
+
+:::tip
+See the Official [Chain IDs](./../protocol/concepts/chain-id#official-chain-ids) for reference.
+:::
+
+```bash
+qubeticsd config chain-id qubetics_9030-1
+```
+
+
+## Installation
+
+You can download the latest binaries from the repo and install them.
+
+### Download the binaries
+
+- Go to the [releases section of the repository](https://github.com/Qubetics/qubetics-mainnetnode-script)
+- Clone the repository
+- Extract the files.
+
+After installation is done, check that the `qubeticsd` binaries have been successfully installed:
+
+```bash
+qubeticsd version
+```
+
+:::info
+If the `qubeticsd: command not found` error message is returned, confirm that you have configured [Go](#go) correctly.
+:::
+
+## Run a Node Locally use these qubetics binary
+-  [macOS14](https://github.com/Qubetics/qubetics-mainnetnode-script/tree/main/macos14build)
+-  [macOS15](https://github.com/Qubetics/qubetics-mainnetnode-script/tree/main/macos15build)
+-  [Ubuntu22.04](https://github.com/Qubetics/qubetics-mainnetnode-script/tree/main/ubuntu22.04build)
+-  [Ubuntu24.04](https://github.com/Qubetics/qubetics-mainnetnode-script/tree/main/ubuntu24.04build)
+
+:::info
+` Ubuntu`
+
+Copy the `qubeticsd` binary and Paste it inside `/usr/local/bin` folder.
+
+
+` Mac`
+
+Copy the `qubeticsd` binary and Paste it inside `$HOME/go/bin`
+:::
+
+## Automated Sync a mainnet Qubetics node
+
+To become familiar with Qubetics, you can sync a qubetics mainnet blockchain node that produces blocks and exposes EVM and Cosmos
+endpoints. This allows you to deploy and interact with smart contracts locally or test core protocol functionality.
+
+Sync a qubetics mainnet blockchain node by executing the script in the base directory of the repository:
+
+```bash
+ ./qubetics_ubuntu_node.sh (it is for ubuntu os)
+ ./qubetics_mac_node.sh (it is for mac os)
+```
+:::info
+Right Now qubetics binary is only for ubuntu22.04 and ubuntu 24.04 macos 14 and 15
+:::
+
+The script stores the node configuration including the local default endpoints under `~/.tmp-qubeticsd/config/config.toml`.
+If you have previously run the script, the script allows you to overwrite the existing configuration and start a new
+local node.
+
+Once your node is running you will see it syncing with mainnet of qubetics and producing blocks in your local Qubetics blockchain:
+
+```bash
+12:59PM INF executed block height=1 module=state num_invalid_txs=0 num_valid_txs=0 server=node
+# ...
+1:00PM INF indexed block exents height=7 module=txindex server=node
+```
+
+
+
+
+
+## Mannually Initialize Mainnet Node
+
+We need to initialize the node to create all the necessary validator and node configuration files:
+
+```bash
+qubeticsd init <your_custom_moniker> --chain-id qubetics_9030-1
+```
+
+:::danger
+Monikers can contain only ASCII characters. Using Unicode characters will render your node unreachable.
+:::
+
+By default, the `init` command creates your `~/.qubeticsd` (i.e `$HOME`) directory with subfolders `config/` and `data/`.
+In the `config` directory, the most important files for configuration are `app.toml` and `config.toml`.
+
+## Genesis & Seeds
+
+### Copy the Genesis File
+
+Check the `genesis.json` file from the [`archive`](https://github.com/Qubetics/qubetics-mainnetnode-script/blob/main/genesis.json)
+ and copy it over to the `config` directory: `~/.tmp-qubeticsd/config/genesis.json`. This is
+ a genesis file with the chain-id and genesis accounts balances.
+
+```bash
+sudo apt install -y unzip wget
+```
+
+Then verify the correctness of the genesis configuration file:
+
+```bash
+qubeticsd validate-genesis
+```
+
+### Add Persistent Peers
+
+We can set the [`persistent_peers`](https://docs.tendermint.com/v0.34/tendermint-core/using-tendermint.html#persistent-peer) field in `~/.tmp-qubeticsd/config/config.toml` to specify peers that your node will maintain persistent
+ connections with. You can retrieve them from the list of
+available peers on the [`mainnet`](https://github.com/Qubetics/qubetics-mainnetnode-script/main/qubetics_ubuntu_node.sh) repo.
+
+A list of available persistent peers is also available in the `#find-peers`. You can get a random 10 entries from the `peers.txt`
+ file in the `PEERS` variable by running the following command:
+
+```bash
+PEERS=`ad8e2053470a347d87f5125d54fe04d86155f7c4@159.138.134.250:26656,1cb538b9950c4f3ce89848101e6698bbf68ad40c@150.40.237.123:26656,41f8e8b5479374a21e69be09911a0c0dc6f41b23@49.0.247.123:26656`
+```
+
+Use `sed` to include them into the configuration. You can also add them manually:
+
+```bash
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" ~/.tmp-qubeticsd/config/config.toml
+```
+
+## Run a Mainnet Validator
+
+We have created a validator and delegator app so you can easily setup a validator and delegator node. Here is the link of our validator and delegator web app.
+
+:::tip
+[Valdiator web app](https://validator.qubetics.com/)
+
+[Delegator web app](https://delegator.qubetics.com//)
+:::
+
+
+## Start node
+
+The final step is to [start the nodes](./../protocol/qubetics-cli/).
+Once enough voting power (+2/3) from the genesis validators is up-and-running, the
+mainnet will start producing blocks.
+
+
+## Upgrading Your Node
+
+:::tip
+These instructions are for full nodes that have ran on previous versions of and would like to upgrade to the latest
+ mainnet version.
+:::
+
+### Reset Data
+
+:::warning
+If the version `<new_version>` you are upgrading to is not breaking from the previous one, you **should not** reset
+the data. If this is the case you can skip to [Restart](#restart)
+:::
+
+First, remove the outdated files and reset the data.
+
+```bash
+rm $HOME/.tmp-qubeticsd/config/addrbook.json $HOME/.tmp-qubeticsd/config/genesis.json
+qubeticsd tendermint unsafe-reset-all --home $HOME/.tmp-qubeticsd
+```
+
+Your node is now in a pristine state while keeping the original `priv_validator.json` and `config.toml`. If you had
+ any sentry nodes or full nodes setup before,
+your node will still try to connect to them, but may fail if they haven't also
+been upgraded.
+
+:::danger Warning
+Make sure that every node has a unique `priv_validator.json`. Do not copy the `priv_validator.json`
+from an old node to multiple new nodes. Running two nodes with the same `priv_validator.json`
+will cause you to double sign.
+:::
+
+### Restart
+
+To restart your node, just type:
+
+```bash
+qubeticsd start
+```
+
+## Share your Peer
+
+:::tip
+To get your Node ID use
+
+```bash
+qubeticsd tendermint show-node-id
+```
+
+:::

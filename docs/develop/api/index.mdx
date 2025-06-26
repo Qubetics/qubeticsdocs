@@ -1,0 +1,22 @@
+# API
+
+The following API's are recommended for development purposes. For maximum control and reliability it's recommended to run your own node.
+
+## Networks
+
+Quickly connect your app or client to Qubetics testnet. Head over to [Networks](./api/networks) to find a list of publicly available endpoint that you can use to connect to the Qubetics
+
+## Clients
+
+The Qubetics Network supports different clients in order to support Cosmos and Ethereum transactions and queries. You can use Swagger as a REST interface for state queries and transactions:
+
+|                                                                                  | Description                                                                          | Default Port | Swagger                                                             |
+| -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ------------ | ------------------------------------------------------------------- |
+| **Cosmos REST **                                                                 | Query Qubeticsd transactions using an HTTP RESTful API                               | `1317`       | [Tesnet](https://swagger-testnet.qubetics.work/swagger/#)  [Mainnet](https://swagger.qubetics.com/swagger/#)                      |
+| **Cosmos gRPC **                                                                 | Query Qubeticsd transactions using GRPC                                              | `9090`       | [Mainnet](grpc.qubetics.com)                |
+| **Cosmos REST (gRPC-Gateway) **                                                  | Query Qubeticsd transactions using an HTTP RESTful API                               | `9091`       |                      |
+| **Ethereum [JSON-RPC](./ethereum-json-rpc/index.md)**                            | Query Ethereum-formatted transactions and blocks or send Ethereum txs using JSON-RPC | `8545`       | [Tesnet](https://rpc-testnet.qubetics.work)   [Mainnet](https://rpc.qubetics.com)                                                                  |
+| **Ethereum [Websocket](./ethereum-json-rpc/index.md#ethereum-websocket)**        | Subscribe to Ethereum logs and events emitted in smart contracts.                    | `8586`       | [Testnet](wss://socket-testnet.qubetics.work) [Mainnet](wss://socket.qubetics.com )                                                                  |
+| **Tendermint [RPC](#tendermint-rpc)**                                            | Query transactions, blocks, consensus state, broadcast transactions, etc.            | `26657`      | [Localhost](https://docs.tendermint.com/v0.34/rpc/) [Testnet](https://tendermint-testnet.qubetics.work) [mainnet](https://tendermint.qubetics.com)                |
+| **Tendermint [Websocket](#tendermint-websocket)**                                | Subscribe to Tendermint ABCI events                                                  | `26657`      | [Testnet](wss://tendermint-testnet.qubetics.work/websocket)  [mainnet](wss://tendermint.qubetics.com/websocket)                                                               |
+| **Command Line Interface ([CLI](../../protocol/qubetics-cli))**                  | Query or send Qubetics transactions using your Terminal or Console.                  | N/A          |                                                                     |
