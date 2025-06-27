@@ -50,9 +50,9 @@ We officially support macOS and Linux only in the following architectures:
 
 To run mainnet or testnet validator nodes, you will need a machine with the following minimum hardware requirements:
 
-* 4 or more physical CPU cores
-* At least 200GB of NVME SSD disk storage. Hard drive I/O speed is crucial!
-* At least 8GB of memory (RAM)
+* 8 or more physical CPU cores
+* At least 500GB of NVME SSD disk storage. Hard drive I/O speed is crucial!
+* At least 16GB of memory (RAM)
 * At least 100mbps network bandwidth
 
 As the usage of the blockchain grows, the server requirements may increase as well, so you should have a plan for
