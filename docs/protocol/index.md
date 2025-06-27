@@ -8,7 +8,7 @@ Qubetics is a scalable Proof-of-Stake blockchain that is fully compatible and
 interoperable with the Ethereum Virtual Machine (EVM). It is built using the [Cosmos SDK](https://github.com/cosmos/cosmos-sdk/)
 which runs on top of the [CometBFT](https://github.com/cometbft/cometbft)
 (a fork of [Tendermint Core](https://docs.tendermint.com/)) consensus engine,
-to accomplish fast finality, high transaction throughput and short block times (~1 seconds).
+to accomplish fast finality, high transaction throughput and short block times (~6 seconds).
 
 This architecture allows users to perform Cosmos and EVM formatted transactions,
 developers to scale EVM dApps cross-chain via [IBC](https://cosmos.network/ibc),
