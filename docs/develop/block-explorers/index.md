@@ -19,6 +19,9 @@ Below is a list of public block explorers that support Qubetics Mainnet and Test
 | ---------- | -------------- | ------------------------------------------------------------------------------ |
 | Explorer   | `evm`          | [ticsscan.com](https://ticsscan.com/)                                        |
 
+| Service    | Support        | URL                                                                            |
+| ---------- | -------------- | ------------------------------------------------------------------------------ |
+| Explorer   | `cosmos`          | [native.ticsscan.com](https://native.ticsscan.com/)                                        |
 
 
 ### Testnet

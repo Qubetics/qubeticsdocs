@@ -72,10 +72,12 @@ If the `qubeticsd: command not found` error message is returned, confirm that yo
 :::
 
 ## Run a Node Locally use these qubetics binary
--  [macOS14](https://github.com/Qubetics/qubetics-mainnetnode-script/tree/main/macos14build)
--  [macOS15](https://github.com/Qubetics/qubetics-mainnetnode-script/tree/main/macos15build)
--  [Ubuntu22.04](https://github.com/Qubetics/qubetics-mainnetnode-script/tree/main/ubuntu22.04build)
--  [Ubuntu24.04](https://github.com/Qubetics/qubetics-mainnetnode-script/tree/main/ubuntu24.04build)
+-  [macOS14](https://github.com/Qubetics/qubetics-mainnet-upgrade/releases/tag/macos14)
+-  [macOS15](https://github.com/Qubetics/qubetics-mainnet-upgrade/releases/tag/macos15)
+-  [Ubuntu20.04](https://github.com/Qubetics/qubetics-mainnet-upgrade/releases/tag/ubuntu20.04)
+-  [Ubuntu22.04](https://github.com/Qubetics/qubetics-mainnet-upgrade/releases/tag/ubuntu22.04)
+-  [Ubuntu24.04](https://github.com/Qubetics/qubetics-mainnet-upgrade/releases/tag/ubuntu24.04)
+
 
 :::info
 ` Ubuntu`
@@ -88,7 +90,7 @@ Copy the `qubeticsd` binary and Paste it inside `/usr/local/bin` folder.
 Copy the `qubeticsd` binary and Paste it inside `$HOME/go/bin`
 :::
 
-## Automated Sync a mainnet Qubetics node
+## Automated Sync a mainnet Qubetics node with first block
 
 To become familiar with Qubetics, you can sync a qubetics mainnet blockchain node that produces blocks and exposes EVM and Cosmos
 endpoints. This allows you to deploy and interact with smart contracts locally or test core protocol functionality.
@@ -99,9 +101,20 @@ Sync a qubetics mainnet blockchain node by executing the script in the base dire
  ./qubetics_ubuntu_node.sh (it is for ubuntu os)
  ./qubetics_mac_node.sh (it is for mac os)
 ```
+ After this clone the repository with the [upgraded-binary](https://github.com/Qubetics/qubetics-mainnet-upgrade)
+
+ We had updated the validator reward program upgrade, so this script will download the upgraded binary and automatically run the chain after the upgrade height."
+ 
+ ```bash
+ ./upgrade_qubetics_node.sh (it is for ubuntu os)
+```
+
 :::info
-Right Now qubetics binary is only for ubuntu22.04 and ubuntu 24.04 macos 14 and 15
+Right Now qubetics binary is only for ubuntu22.04 and ubuntu 24.04
 :::
+
+
+
 
 The script stores the node configuration including the local default endpoints under `~/.tmp-qubeticsd/config/config.toml`.
 If you have previously run the script, the script allows you to overwrite the existing configuration and start a new
@@ -178,7 +191,7 @@ We have created a validator and delegator app so you can easily setup a validato
 :::tip
 [Valdiator web app](https://validator.qubetics.com/)
 
-[Delegator web app](https://delegator.qubetics.com//)
+[Delegator web app](https://delegator.qubetics.com/)
 :::
 
 
