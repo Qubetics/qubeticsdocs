@@ -14,25 +14,25 @@ Qubetics-specific libraries are useful in aiding developers speed up development
 to signing, address converter (between `eth` and `qubetics` addresses), and `EIP-712` transaction generator. Here is the
 library binding, in Javascript/Typescript.
 
-- [CosmJss](https://www.npmjs.com/org/cosmjss) - is the official Qubetics client TypeScript library is a fork of the cosmjs TypeScript library. However, it extends its functionality by supporting `eth` and facilitating native `Qubetics` `address mapping` for signing native transactions. It contains
+- [cosmjs-evm](https://www.npmjs.com/org/cosmjs-evm) - is the official Qubetics client TypeScript library is a fork of the cosmjs TypeScript library. However, it extends its functionality by supporting `eth` and facilitating native `Qubetics` `address mapping` for signing native transactions. It contains
 
  several packages:
-    - [@cosmjss/amino](https://www.npmjs.com/package/@cosmjss/amino)
-    - [@cosmjss/cli](https://www.npmjs.com/package/@cosmjss/cli)
-    - [@cosmjss/cosmwasm-stargate](https://www.npmjs.com/package/@cosmjss/cosmwasm-stargate)
-    - [@cosmjss/crypto](https://www.npmjs.com/package/@cosmjss/crypto)
-    - [@cosmjss/encoding](https://www.npmjs.com/package/@cosmjss/encoding)
-    - [@cosmjss/faucet](https://www.npmjs.com/package/@cosmjss/faucet)
-    - [@cosmjss/faucet-client](https://www.npmjs.com/package/@cosmjss/faucet-client)
-    - [@cosmjss/json-rpc](https://www.npmjs.com/package/@cosmjss/json-rpc)
-    - [@cosmjss/ledger-amino](https://www.npmjs.com/package/@cosmjss/ledger-amino)
-    - [@cosmjss/math](https://www.npmjs.com/package/@cosmjss/math)
-    - [@cosmjss/proto-signing](https://www.npmjs.com/package/@cosmjss/proto-signing)
-    - [@cosmjss/socket](https://www.npmjs.com/package/@cosmjss/socket)
-    - [@cosmjss/stargate](https://www.npmjs.com/package/@cosmjss/stargate)
-    - [@cosmjss/stream](https://www.npmjs.com/package/@cosmjss/stream)
-    - [@cosmjss/tendermint-rpc](https://www.npmjs.com/package/@cosmjss/tendermint-rpc)
-    - [@cosmjss/utils](https://www.npmjs.com/package/@cosmjss/utils)
+    - [@cosmjs-evm/amino](https://www.npmjs.com/package/@cosmjs-evm/amino)
+    - [@cosmjs-evm/cli](https://www.npmjs.com/package/@cosmjs-evm/cli)
+    - [@cosmjs-evm/cosmwasm-stargate](https://www.npmjs.com/package/@cosmjs-evm/cosmwasm-stargate)
+    - [@cosmjs-evm/crypto](https://www.npmjs.com/package/@cosmjs-evm/crypto)
+    - [@cosmjs-evm/encoding](https://www.npmjs.com/package/@cosmjs-evm/encoding)
+    - [@cosmjs-evm/faucet](https://www.npmjs.com/package/@cosmjs-evm/faucet)
+    - [@cosmjs-evm/faucet-client](https://www.npmjs.com/package/@cosmjs-evm/faucet-client)
+    - [@cosmjs-evm/json-rpc](https://www.npmjs.com/package/@cosmjs-evm/json-rpc)
+    - [@cosmjs-evm/ledger-amino](https://www.npmjs.com/package/@cosmjs-evm/ledger-amino)
+    - [@cosmjs-evm/math](https://www.npmjs.com/package/@cosmjs-evm/math)
+    - [@cosmjs-evm/proto-signing](https://www.npmjs.com/package/@cosmjs-evm/proto-signing)
+    - [@cosmjs-evm/socket](https://www.npmjs.com/package/@cosmjs-evm/socket)
+    - [@cosmjs-evm/stargate](https://www.npmjs.com/package/@cosmjs-evm/stargate)
+    - [@cosmjs-evm/stream](https://www.npmjs.com/package/@cosmjs-evm/stream)
+    - [@cosmjs-evm/tendermint-rpc](https://www.npmjs.com/package/@cosmjs-evm/tendermint-rpc)
+    - [@cosmjs-evm/utils](https://www.npmjs.com/package/@cosmjs-evm/utils)
 
 
 

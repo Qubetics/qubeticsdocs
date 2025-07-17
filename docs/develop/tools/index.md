@@ -8,7 +8,7 @@ blockchain technology, which requires specific tools and frameworks for developm
 - [Tools and Plugins](./tools-plugins.md): There are many tools and plugins to aid in the development of dApps. These include
 smart contract languages and frameworks, development environments, wallet and identity management plugins, and analytics
 and monitoring tools.
-- [Client Integration](./client-integrations.md): Cosmjss and (Web3,ether) are two examples of client integration toolings to
+- [Client Integration](./client-integrations.md): cosmjs-evm and (Web3,ether) are two examples of client integration toolings to
 help developers interact with our core protocol features by providing interfaces, types, signing abstractions, and more.
 - [Contract Verifications](./contract-verifications.md): This is an important process in blockchain development that
 involves validating the authenticity and accuracy of smart contract code before deploying it to the blockchain. Contract

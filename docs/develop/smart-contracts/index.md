@@ -11,7 +11,7 @@ Whether you are building new use cases on Qubetics
 or porting an existing dApp from another EVM-based chain (e.g. Ethereum),
 you can easily build and deploy EVM  smart contracts on Qubetics to implement the core business logic of your dApp.
 Qubetics is fully compatible with the EVM,
-so it allows you to use the same tools (Solidity, Remix, qubecode IDE, Oracles,cosmjss, etc.)
+so it allows you to use the same tools (Solidity, Remix, qubecode IDE, Oracles,cosmjs-evm, etc.)
 and APIs (i.e. Ethereum JSON-RPC) that are available on the EVM.
 
 Leveraging the interoperability of Cosmos chains,
