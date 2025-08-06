@@ -103,14 +103,35 @@ Sync a qubetics mainnet blockchain node by executing the script in the base dire
 ```
  After this clone the repository with the [upgraded-binary](https://github.com/Qubetics/qubetics-mainnet-upgrade)
 
- We had updated the validator reward program upgrade, so this script will download the upgraded binary and automatically run the chain after the upgrade height."
+ We had updated the 20% fee burn adn 80% goes to community pool, so this script will download the upgraded binary and automatically run the chain after the upgrade height."
+ Version v1.0.2 binaries
+ The chain will get upgraded once it reaches the height of 780000. Clone the repository and change into the directory.
+```bash
+Copy
+git clone https://github.com/Qubetics/qubetics-upgrade-v1.0.2 
+Now run the below command
+
+Copy
+cd qubetics-upgrade-v1.0.2/
+./upgrade_qubetics_node.sh
+```
  
- ```bash
- ./upgrade_qubetics_node.sh (it is for ubuntu os)
+
+  We had updated the fee and reward changes, so this script will download the upgraded binary and automatically run the chain after the upgrade height."
+ Version v1.0.1 binaries
+ The chain will get upgraded. Clone the repository and change into the directory.
+```bash
+Copy
+git clone https://github.com/Qubetics/qubetics-mainnet-upgrade 
+Now run the below command
+
+Copy
+cd qubetics-mainnet-upgrade/
+./upgrade_qubetics_node.sh
 ```
 
 :::info
-Right Now qubetics binary is only for ubuntu22.04 and ubuntu 24.04
+Right Now qubetics binary is only for ubuntu20.04,ubuntu22.04 and ubuntu 24.04
 :::
 
 
